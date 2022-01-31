@@ -8,7 +8,8 @@ namespace Sorteerija
         //public Tuple<string, int>
         static void Main(string[] args)
         {
-            List<string> Output = new List<string>();
+            //List<string> Output = new List<string>();
+            string Output;
 
             Console.WriteLine("N");
             int N = Convert.ToInt32(Console.ReadLine());
@@ -23,7 +24,8 @@ namespace Sorteerija
             var Variable = Rekursiivne(NumbridVabamad);
             string SorteerimataNumbrid = Variable.Item1;
             int VaikseimSorteeritudArv = Variable.Item2;
-            Output.Add(Convert.ToString(VaikseimSorteeritudArv));
+            //Output.Add(Convert.ToString(VaikseimSorteeritudArv));
+            Output = Convert.ToString(VaikseimSorteeritudArv);
 
             do
             {
@@ -31,13 +33,16 @@ namespace Sorteerija
                 SorteerimataNumbrid = Variable.Item1;
                 VaikseimSorteeritudArv = Variable.Item2;
 
-                Output.Add(Convert.ToString(VaikseimSorteeritudArv));
+                //Output.Add(Convert.ToString(VaikseimSorteeritudArv));
+                Output = Output + " " + Convert.ToString(VaikseimSorteeritudArv);
             } while (SorteerimataNumbrid.Length > 0);
 
-            string[] str = Output.ToArray();
-            string Tulemus = string.Join(" ", str);
+            //string[] str = Output.ToArray();
+            //string Tulemus = string.Join(" ", str);
 
-            Console.WriteLine(Tulemus);
+            //Console.WriteLine(Tulemus)
+            Console.WriteLine(Output);
+            Console.Read();
         }
 
 
@@ -60,7 +65,8 @@ namespace Sorteerija
 
             //Console.WriteLine(VaikseimArvHetkel);
 
-            List<string> Nimekiri = new List<string>();
+            //List<string> Nimekiri = new List<string>();
+            string Nimekiri = "";
 
             bool jubaleitud = false;
 
@@ -72,21 +78,25 @@ namespace Sorteerija
                     {
                         if (jubaleitud == true)
                         {
-                            Nimekiri.Add(v);
+                            //Nimekiri.Add(v);
+                            Nimekiri = Nimekiri + " " + v;
                         }
                         jubaleitud = true;
                     }
                     else
                     {
-                        Nimekiri.Add(v);
+                        //Nimekiri.Add(v);
+                        Nimekiri = Nimekiri + " " + v;
                     }
                 }
             }
 
-            string[] str = Nimekiri.ToArray();
-            string Tulemus = string.Join(" ", str);
+            //string[] str = Nimekiri.ToArray();
+            //string Tulemus = string.Join(" ", str);
 
             //Console.WriteLine(Tulemus, VaikseimArvHetkel);
+
+            string Tulemus = Nimekiri;
 
             var Valjund = Tuple.Create(Tulemus, VaikseimArvHetkel);
 
