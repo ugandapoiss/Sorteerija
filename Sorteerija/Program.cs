@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Windows;
 
 namespace Sorteerija
 {
@@ -11,11 +14,29 @@ namespace Sorteerija
             //List<string> Output = new List<string>();
             string Output;
 
+            Console.WriteLine("Kirjutage 1 kui kirjutate N ja jada CMDsse. Kirjutage 2 kui kirjutate N ja jada .txt fail asukoha CMDsse");
+            int Algus = Convert.ToInt32(Console.ReadLine());
+
             Console.WriteLine("N");
             int N = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Numbrite list");
             string Numbrid = Console.ReadLine();
+
+            string path = "C:\\Users\\robin\\Desktop\\Sorteerida.txt";
+
+            using (FileStream fs = File.OpenRead(path))
+            {
+                byte[] b = new byte[1024000];
+                UTF8Encoding temp = new UTF8Encoding(true);
+
+                while (fs.Read(b, 0, b.Length) > 0)
+                {
+                    // Printing the file contents
+                    Numbrid = temp.GetString(b);
+                }
+            }
+
 
             string[] NumbridVabamad = Numbrid.Split(" ");
 
