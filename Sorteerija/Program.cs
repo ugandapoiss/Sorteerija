@@ -14,30 +14,26 @@ namespace Sorteerija
             //List<string> Output = new List<string>();
             string Output;
 
-            Console.WriteLine("Kirjutage 1 kui kirjutate N ja jada CMDsse. Kirjutage 2 kui kirjutate N ja jada .txt fail asukoha CMDsse");
-            int Algus = Convert.ToInt32(Console.ReadLine());
-
             Console.WriteLine("N");
             int N = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Numbrite list");
-            string Numbrid = Console.ReadLine();
+            Console.WriteLine("Numbrite list või täpne .txt faili path");
+            string Sisend = Console.ReadLine();
 
-            string path = "C:\\Users\\robin\\Desktop\\Sorteerida.txt";
+            string Numbrid;
 
-            using (FileStream fs = File.OpenRead(path))
+            string Asukoht = Path.GetFullPath(Sisend);
+
+            if (File.Exists(Asukoht) == true)
             {
-                byte[] b = new byte[1024000];
-                UTF8Encoding temp = new UTF8Encoding(true);
-
-                while (fs.Read(b, 0, b.Length) > 0)
-                {
-                    // Printing the file contents
-                    Numbrid = temp.GetString(b);
-                }
+                Numbrid = System.IO.File.ReadAllText(Sisend);
             }
-
-
+            else
+            {
+                Numbrid = Sisend;
+            }
+            
+            
             string[] NumbridVabamad = Numbrid.Split(" ");
 
             //Console.WriteLine(NumbridVabamad);
@@ -63,6 +59,7 @@ namespace Sorteerija
 
             //Console.WriteLine(Tulemus)
             Console.WriteLine(Output);
+            Console.WriteLine("Sorteeritud");
             Console.Read();
         }
 
@@ -71,6 +68,8 @@ namespace Sorteerija
         {
             int VaikseimArvHetkel = 0;
             int EelmineVaikseimArv = 2147483647;
+            string Nimekiri = "";
+            bool jubaleitud = false;
 
             foreach (var v in NumbridVabamad)
             {
@@ -86,10 +85,7 @@ namespace Sorteerija
 
             //Console.WriteLine(VaikseimArvHetkel);
 
-            //List<string> Nimekiri = new List<string>();
-            string Nimekiri = "";
-
-            bool jubaleitud = false;
+            //List<string> Nimekiri = new List<string>();2
 
             foreach (var v in NumbridVabamad)
             {
